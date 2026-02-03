@@ -127,15 +127,15 @@ npx get-shit-done-cc
 
 If you prefer to install manually:
 
-1. Copy `statusline.js` to `~/.claude/statusline.js`
-2. Make it executable: `chmod +x ~/.claude/statusline.js`
+1. Copy `statusline.cjs` to `~/.claude/statusline.cjs`
+2. Make it executable: `chmod +x ~/.claude/statusline.cjs`
 3. Add to `~/.claude/settings.json`:
 
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/YOUR_USERNAME/.claude/statusline.js --width 50"
+    "command": "/Users/YOUR_USERNAME/.claude/statusline.cjs --width 50"
   }
 }
 ```
@@ -145,7 +145,7 @@ If you prefer to install manually:
 ### Statusline not showing?
 
 1. Make sure you restarted Claude Code after installation
-2. Verify the script is executable: `ls -la ~/.claude/statusline.js`
+2. Verify the script is executable: `ls -la ~/.claude/statusline.cjs`
 
 ### Wrong colors?
 

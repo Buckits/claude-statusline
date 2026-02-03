@@ -133,11 +133,11 @@ function uninstall(isGlobal) {
 
   let removed = false;
 
-  // Remove statusline.sh
-  const statuslinePath = path.join(targetDir, 'statusline.js');
+  // Remove statusline.cjs
+  const statuslinePath = path.join(targetDir, 'statusline.cjs');
   if (fs.existsSync(statuslinePath)) {
     fs.unlinkSync(statuslinePath);
-    console.log(`   ${green}✓${reset} Removed statusline.js`);
+    console.log(`   ${green}✓${reset} Removed statusline.cjs`);
     removed = true;
   }
 
@@ -147,7 +147,7 @@ function uninstall(isGlobal) {
     const settings = readSettings(settingsPath);
 
     if (settings.statusLine && settings.statusLine.command &&
-        settings.statusLine.command.includes('statusline.js')) {
+        settings.statusLine.command.includes('statusline.cjs')) {
       delete settings.statusLine;
       writeSettings(settingsPath, settings);
       console.log(`   ${green}✓${reset} Removed statusline from settings.json`);
@@ -184,12 +184,12 @@ function install(isGlobal, barWidth) {
     fs.mkdirSync(targetDir, { recursive: true });
   }
 
-  // Copy statusline.sh
-  const statuslineSrc = path.join(__dirname, '..', 'statusline.js');
-  const statuslineDest = path.join(targetDir, 'statusline.js');
+  // Copy statusline.cjs
+  const statuslineSrc = path.join(__dirname, '..', 'statusline.cjs');
+  const statuslineDest = path.join(targetDir, 'statusline.cjs');
   fs.copyFileSync(statuslineSrc, statuslineDest);
   fs.chmodSync(statuslineDest, '755');
-  console.log(`   ${green}✓${reset} Installed statusline.js`);
+  console.log(`   ${green}✓${reset} Installed statusline.cjs`);
 
   // Update settings.json
   const settingsPath = path.join(targetDir, 'settings.json');
