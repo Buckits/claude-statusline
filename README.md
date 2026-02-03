@@ -1,6 +1,75 @@
 # @buckits/claude-statusline
 
-A beautiful 2-line dashboard statusline for Claude Code with gradient progress bar, compact threshold marker, git status indicators, cost tracking, and GSD (Get Shit Done) update notifications.
+<div align="center">
+
+**The statusline Claude Code deserves.**
+
+[![npm version](https://img.shields.io/npm/v/@buckits/claude-statusline.svg)](https://www.npmjs.com/package/@buckits/claude-statusline)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+```
+🤖 Opus 4.5 ($12.41) │ [████████████████████░░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 80k/200k
+📁 my-project main ✓ → origin/main ↑15
+```
+
+[Features](#features) • [Installation](#installation) • [Screenshots](#what-it-looks-like) • [GSD Compatible](#-gsd-compatible)
+
+</div>
+
+---
+
+## Why This Statusline?
+
+Claude Code's default statusline is... minimal. You deserve better.
+
+**This statusline shows you everything you need at a glance:**
+
+- 🎨 **Gradient progress bar** that flows green → yellow → red as you approach the limit
+- ⚡ **Auto-compact threshold marker** so you know exactly when Claude will summarize
+- 💰 **Session cost tracking** in real-time
+- 🔀 **Full git integration** with branch, status, and ahead/behind tracking
+
+## Features
+
+### 🎨 Gradient Progress Bar
+
+50 segments that smoothly transition through colors as your context fills up:
+
+```
+[██████████████████████████████░░░░░░░░░░⚡░░░░░░░░░░░]
+ ↑ green        ↑ yellow      ↑ orange   ↑ threshold
+```
+
+### ⚡ Auto-Compact Threshold
+
+A red lightning bolt marks exactly where Claude will auto-summarize (78%). No more surprises.
+
+### 💰 Real-Time Cost
+
+See your session cost update as you work: `($12.41)`
+
+### 🔀 Git Status at a Glance
+
+| Symbol | Meaning |
+|--------|---------|
+| `✓` | Clean - all committed |
+| `●` | Unstaged changes |
+| `✚` | Staged and ready |
+| `●✚` | Both staged and unstaged |
+| `↑5` | 5 commits ahead of remote |
+| `↓2` | 2 commits behind remote |
+
+### 📊 2-Line Dashboard
+
+**Line 1:** AI Session Info
+```
+🤖 Opus 4.5 ($12.41) │ [████████████░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 52k/200k
+```
+
+**Line 2:** Project & Git Info
+```
+📁 my-project feature/auth ●✚ → origin/feature/auth ↑3 ↓1
+```
 
 ## Installation
 
@@ -8,81 +77,85 @@ A beautiful 2-line dashboard statusline for Claude Code with gradient progress b
 npx @buckits/claude-statusline
 ```
 
-## Features
+That's it. The installer will:
+1. Ask where to install (global or local)
+2. Copy the statusline script
+3. Configure your settings
 
-- **2-Line Dashboard Layout** - Clean separation of AI info and project info
-- **Gradient Progress Bar** - 50 segments (4k tokens each) that smoothly transition green → yellow → orange → red
-- **⚡ Compact Threshold Marker** - Red lightning bolt shows exactly where auto-compact triggers (78%)
-- **Session Cost Tracking** - See your running cost in real-time
-- **Git Status Indicators**:
-  - `✓` Green checkmark = clean (all committed)
-  - `●` Yellow dot = unstaged changes
-  - `✚` Green plus = staged changes ready to commit
-  - `●✚` Both = partial commit state
-- **Ahead/Behind Tracking** - `↑5 ↓2` shows commits ahead/behind remote
-- **Visual Icons** - 🤖 for AI line, 📁 for project line
-- **GSD Update Notifications** - Automatically detects [Get Shit Done](https://www.npmjs.com/package/get-shit-done-cc) installations and shows available updates
+### Options
 
-## Screenshot
+```bash
+# Interactive (recommended)
+npx @buckits/claude-statusline
 
-```
-🤖 Opus 4.5 ($14.61) │ [████████████████████░░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 80k/200k
-📁 trellis POC ✓ → origin/POC ↑15
-```
+# Install globally for all projects
+npx @buckits/claude-statusline --global
 
-With GSD update available:
-```
-🤖 Opus 4.5 ($14.61) │ [████████████████████░░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 80k/200k
-📁 trellis POC ✓ → origin/POC ↑15    |  GSD 1.5.0>1.6.4
+# Install for current project only
+npx @buckits/claude-statusline --local
+
+# Replace existing statusline
+npx @buckits/claude-statusline --global --force
+
+# Uninstall
+npx @buckits/claude-statusline --global --uninstall
 ```
 
-## What Each Element Means
+## What It Looks Like
 
-### Line 1 - AI Session Info
-| Element | Description |
-|---------|-------------|
-| 🤖 | AI indicator |
-| `Opus 4.5` | Current model (cyan) |
-| `($14.61)` | Session cost (green) |
-| `│` | Separator |
-| `[███░░░⚡░░░]` | Context usage with compact threshold |
-| `80k/200k` | Tokens used / total |
+### Normal Usage (Green Zone)
+```
+🤖 Opus 4.5 ($2.15) │ [██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 20k/200k
+📁 my-app main ✓ → origin/main
+```
 
-### Line 2 - Project Info
-| Element | Description |
-|---------|-------------|
-| 📁 | Project indicator |
-| `trellis` | Project name (cyan) |
-| `POC` | Current branch (magenta) |
-| `✓●✚` | Git status (clean/unstaged/staged) |
-| `→` | Points to tracking branch |
-| `origin/POC` | Remote tracking branch (blue) |
-| `↑15` | Commits ahead (green) |
-| `↓3` | Commits behind (red) |
+### Getting Busy (Yellow Zone)
+```
+🤖 Opus 4.5 ($8.42) │ [██████████████████████████░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 52k/200k
+📁 my-app feature/api ● → origin/feature/api ↑5
+```
 
-## GSD Integration
+### Approaching Limit (Orange/Red Zone)
+```
+🤖 Opus 4.5 ($14.61) │ [████████████████████████████████████████⚡░░░░░░░░░░░] 80k/200k
+📁 my-app main ✚ → origin/main ↑2 ↓1
+```
 
-If you have [Get Shit Done (GSD)](https://www.npmjs.com/package/get-shit-done-cc) installed, the statusline will automatically detect it and show update notifications when a newer version is available.
+## 🤝 GSD Compatible
 
-**How it works:**
-1. Checks for GSD installation in project (`.claude/get-shit-done/VERSION`) or global (`~/.claude/get-shit-done/VERSION`)
-2. Reads the latest version from GSD's update cache (`~/.claude/cache/gsd-update-check.json`)
-3. If versions differ, shows the update notification on line 2
+This statusline works perfectly alongside [Get Shit Done (GSD)](https://www.npmjs.com/package/get-shit-done-cc)!
 
-**Note:** The cache is populated by GSD's SessionStart hook. If you see no notification, you're either on the latest version or GSD hasn't checked for updates yet.
+If you have GSD installed, the statusline will automatically show update notifications when a new GSD version is available.
 
-## Progress Bar Colors
+```bash
+# Install both for the ultimate Claude Code setup
+npx @buckits/claude-statusline
+npx get-shit-done-cc
+```
 
-The bar gradient is calculated relative to the ⚡ threshold (not total capacity):
+## Requirements
 
-| Distance to ⚡ | Color |
-|---------------|-------|
-| Far (safe) | Bright green |
-| Approaching | Yellow |
-| Close | Orange |
-| At threshold | Red |
+- **Claude Code CLI** (obviously)
+- **jq** - for JSON parsing ([install guide](https://stedolan.github.io/jq/download/))
+- **Bash** - ships with macOS/Linux
+- **Git** - for git status features (optional)
+
+### Installing jq
+
+```bash
+# macOS
+brew install jq
+
+# Ubuntu/Debian
+sudo apt install jq
+
+# Windows (via chocolatey)
+choco install jq
+```
 
 ## Manual Installation
+
+If you prefer to install manually:
 
 1. Copy `statusline.sh` to `~/.claude/statusline.sh`
 2. Make it executable: `chmod +x ~/.claude/statusline.sh`
@@ -97,13 +170,36 @@ The bar gradient is calculated relative to the ⚡ threshold (not total capacity
 }
 ```
 
-## Requirements
+## Troubleshooting
 
-- Claude Code CLI
-- `jq` (for JSON parsing)
-- Bash
-- Git (for git status features)
+### Statusline not showing?
+
+1. Make sure you restarted Claude Code after installation
+2. Check that `jq` is installed: `which jq`
+3. Verify the script is executable: `ls -la ~/.claude/statusline.sh`
+
+### Wrong colors?
+
+Your terminal needs to support 256 colors. Most modern terminals do.
+
+### Git status not showing?
+
+Make sure you're in a git repository with at least one commit.
+
+## Contributing
+
+Issues and PRs welcome at [github.com/Buckits/claude-statusline](https://github.com/Buckits/claude-statusline)
 
 ## License
 
-MIT
+MIT © [Buckits](https://github.com/Buckits)
+
+---
+
+<div align="center">
+
+**Made for the Claude Code community** 🤖
+
+*Star this repo if you find it useful!*
+
+</div>

@@ -1,7 +1,7 @@
 {
   "name": "@buckits/claude-statusline",
-  "version": "2.2.0",
-  "description": "A beautiful 2-line dashboard statusline for Claude Code with gradient progress bar, compact threshold marker, git status indicators, cost tracking, and GSD update notifications",
+  "version": "2.3.0",
+  "description": "The statusline Claude Code deserves - gradient progress bar, auto-compact threshold marker, git status, cost tracking, 2-line dashboard",
   "bin": {
     "claude-statusline": "./bin/install.js"
   },
@@ -14,13 +14,25 @@
     "claude-code",
     "statusline",
     "cli",
-    "terminal"
+    "terminal",
+    "progress-bar",
+    "git-status",
+    "context-window",
+    "anthropic",
+    "ai",
+    "developer-tools",
+    "gsd",
+    "get-shit-done"
   ],
   "author": "Buckits",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Buckits/claude-statusline"
+  },
+  "homepage": "https://github.com/Buckits/claude-statusline#readme",
+  "bugs": {
+    "url": "https://github.com/Buckits/claude-statusline/issues"
   },
   "engines": {
     "node": ">=14"
