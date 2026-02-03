@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="80" viewBox="0 0 720 80">
+  <!-- Terminal background -->
+  <rect width="720" height="80" rx="6" ry="6" fill="#1a1a1a"/>
+
+  <!-- Line 1: Model + Context (Red Zone - 80%) -->
+  <text x="12" y="30" font-family="SF Mono, Monaco, Consolas, monospace" font-size="13">
+    <tspan fill="#ffffff">🤖 </tspan>
+    <tspan fill="#00d4ff" font-weight="bold">Opus 4.5</tspan>
+    <tspan fill="#00ff00"> ($14.61)</tspan>
+    <tspan fill="#555"> │ [</tspan>
+    <tspan fill="#00ff00">████</tspan>
+    <tspan fill="#44ff00">███</tspan>
+    <tspan fill="#88ff00">███</tspan>
+    <tspan fill="#bbff00">██</tspan>
+    <tspan fill="#ddff00">██</tspan>
+    <tspan fill="#ffff00">██</tspan>
+    <tspan fill="#ffcc00">██</tspan>
+    <tspan fill="#ff9900">██</tspan>
+    <tspan fill="#ff6600">██</tspan>
+    <tspan fill="#ff3300">██</tspan>
+    <tspan fill="#ff0000">██</tspan>
+    <tspan fill="#444">░░░░░░░░</tspan>
+    <tspan fill="#ff3333">⚡</tspan>
+    <tspan fill="#444">░░░░░░░░░░] </tspan>
+    <tspan fill="#ff6600">80k</tspan>
+    <tspan fill="#00d4ff">/200k</tspan>
+  </text>
+
+  <!-- Line 2: Project/Git Info -->
+  <text x="12" y="60" font-family="SF Mono, Monaco, Consolas, monospace" font-size="13">
+    <tspan fill="#ffffff">📁 </tspan>
+    <tspan fill="#00d4ff" font-weight="bold">my-app</tspan>
+    <tspan fill="#ff66ff"> main</tspan>
+    <tspan fill="#00ff00"> ✚</tspan>
+    <tspan fill="#555"> → </tspan>
+    <tspan fill="#6699ff">origin/main</tspan>
+    <tspan fill="#00ff00"> ↑2</tspan>
+    <tspan fill="#ff4444"> ↓1</tspan>
+  </text>
+</svg>

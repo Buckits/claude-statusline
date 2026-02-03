@@ -7,10 +7,11 @@
 [![npm version](https://img.shields.io/npm/v/@buckits/claude-statusline.svg)](https://www.npmjs.com/package/@buckits/claude-statusline)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-```
-🤖 Opus 4.5 ($12.41) │ [████████████████████░░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 80k/200k
-📁 my-project main ✓ → origin/main ↑15
-```
+<br>
+
+![Statusline Preview](assets/statusline-preview.svg)
+
+<br>
 
 [Features](#features) • [Installation](#installation) • [Screenshots](#what-it-looks-like) • [GSD Compatible](#-gsd-compatible)
 
@@ -33,16 +34,11 @@ Claude Code's default statusline is... minimal. You deserve better.
 
 ### 🎨 Gradient Progress Bar
 
-50 segments that smoothly transition through colors as your context fills up:
-
-```
-[██████████████████████████████░░░░░░░░░░⚡░░░░░░░░░░░]
- ↑ green        ↑ yellow      ↑ orange   ↑ threshold
-```
+50 segments that smoothly transition through colors as your context fills up. The gradient is calculated relative to the auto-compact threshold, not total capacity—so you always know how close you are to summarization.
 
 ### ⚡ Auto-Compact Threshold
 
-A red lightning bolt marks exactly where Claude will auto-summarize (78%). No more surprises.
+A red lightning bolt marks exactly where Claude will auto-summarize (78%). No more surprises—you'll see it coming.
 
 ### 💰 Real-Time Cost
 
@@ -61,15 +57,8 @@ See your session cost update as you work: `($12.41)`
 
 ### 📊 2-Line Dashboard
 
-**Line 1:** AI Session Info
-```
-🤖 Opus 4.5 ($12.41) │ [████████████░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 52k/200k
-```
-
-**Line 2:** Project & Git Info
-```
-📁 my-project feature/auth ●✚ → origin/feature/auth ↑3 ↓1
-```
+- **Line 1:** 🤖 Model • Cost • Context Progress
+- **Line 2:** 📁 Project • Branch • Git Status • Remote Tracking
 
 ## Installation
 
@@ -103,23 +92,23 @@ npx @buckits/claude-statusline --global --uninstall
 
 ## What It Looks Like
 
-### Normal Usage (Green Zone)
-```
-🤖 Opus 4.5 ($2.15) │ [██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 20k/200k
-📁 my-app main ✓ → origin/main
-```
+### 🟢 Normal Usage (Green Zone)
 
-### Getting Busy (Yellow Zone)
-```
-🤖 Opus 4.5 ($8.42) │ [██████████████████████████░░░░░░░░░░░░░░⚡░░░░░░░░░░░] 52k/200k
-📁 my-app feature/api ● → origin/feature/api ↑5
-```
+![Green Zone](assets/statusline-green.svg)
 
-### Approaching Limit (Orange/Red Zone)
-```
-🤖 Opus 4.5 ($14.61) │ [████████████████████████████████████████⚡░░░░░░░░░░░] 80k/200k
-📁 my-app main ✚ → origin/main ↑2 ↓1
-```
+Safe and sound. Plenty of context remaining.
+
+### 🟡 Getting Busy (Yellow Zone)
+
+![Yellow Zone](assets/statusline-yellow.svg)
+
+Making progress. Keep an eye on that threshold.
+
+### 🔴 Approaching Limit (Red Zone)
+
+![Red Zone](assets/statusline-red.svg)
+
+Getting close to auto-compact. Consider wrapping up or starting fresh.
 
 ## 🤝 GSD Compatible
 
