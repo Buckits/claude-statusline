@@ -59,35 +59,8 @@ ${cyan}   ╔═╗╦  ╔═╗╦ ╦╔╦╗╔═╗
    ${bold}The statusline Claude Code deserves${reset} ${dim}v${pkg.version}${reset}
 
    ${dim}───────────────────────────────────────────${reset}
-   ${green}█${reset}${green}█${reset}${yellow}█${reset}${yellow}█${reset}${red}█${reset}${red}█${reset}░░░░⚡░░░  ${dim}Gradient progress • Git status${reset}
+   ${green}██${reset}${yellow}██${reset}${red}██${reset}${dim}░░░░${reset}${red}⚡${reset}${dim}░░░  Gradient progress • Git status${reset}
    ${dim}───────────────────────────────────────────${reset}
-`;
-
-const features = `
-   ${cyan}✦${reset} ${bold}Gradient Progress Bar${reset}
-     50 segments that flow ${green}green${reset} → ${yellow}yellow${reset} → ${red}red${reset}
-     as you approach the context limit
-
-   ${cyan}✦${reset} ${bold}⚡ Auto-Compact Threshold${reset}
-     Red lightning bolt shows exactly where
-     Claude will auto-summarize (78%)
-
-   ${cyan}✦${reset} ${bold}Git Integration${reset}
-     Branch • ${green}✓${reset}/${yellow}●${reset}/${green}✚${reset} status • ${green}↑${reset}ahead ${red}↓${reset}behind
-
-   ${cyan}✦${reset} ${bold}Session Cost Tracking${reset}
-     See your running \$ cost in real-time
-
-   ${cyan}✦${reset} ${bold}2-Line Dashboard${reset}
-     Line 1: 🤖 Model • Cost • Context
-     Line 2: 📁 Project • Branch • Status
-`;
-
-const example = `
-   ${dim}┌─────────────────────────────────────────────────────────────────┐${reset}
-   ${dim}│${reset} 🤖 ${cyan}Opus 4.5${reset} ${green}(\$12.41)${reset} │ [${green}████████${yellow}████${red}██${reset}░░░░░░░⚡░░░░░] ${yellow}62k${reset}/${cyan}200k${reset} ${dim}│${reset}
-   ${dim}│${reset} 📁 ${cyan}my-project${reset} ${magenta}main${reset} ${green}✓${reset} → ${cyan}origin/main${reset} ${green}↑2${reset}               ${dim}│${reset}
-   ${dim}└─────────────────────────────────────────────────────────────────┘${reset}
 `;
 
 // Help text
@@ -279,9 +252,6 @@ function promptLocation() {
     install(true);
     return;
   }
-
-  console.log(features);
-  console.log(example);
 
   const rl = readline.createInterface({
     input: process.stdin,
