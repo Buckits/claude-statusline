@@ -24,7 +24,7 @@ const hasGlobal = args.includes('--global') || args.includes('-g');
 const hasLocal = args.includes('--local') || args.includes('-l');
 const hasHelp = args.includes('--help') || args.includes('-h');
 const hasUninstall = args.includes('--uninstall') || args.includes('-u');
-const hasForce = args.includes('--force') || args.includes('-f');
+
 
 // Directory constants
 const CLAUDE_DIR_NAME = '.claude';
@@ -72,11 +72,10 @@ if (hasHelp) {
      ${cyan}-g, --global${reset}     Install globally (${dim}~/.claude${reset})
      ${cyan}-l, --local${reset}      Install locally (${dim}./.claude${reset})
      ${cyan}-u, --uninstall${reset}  Remove statusline configuration
-     ${cyan}-f, --force${reset}      Replace existing statusline config
      ${cyan}-h, --help${reset}       Show this help message
 
    ${yellow}Examples:${reset}
-     ${dim}# Interactive install (prompts for location)${reset}
+     ${dim}# Interactive install (prompts for location and width)${reset}
      npx @buckits/claude-statusline
 
      ${dim}# Install globally for all projects${reset}
@@ -85,8 +84,8 @@ if (hasHelp) {
      ${dim}# Install for current project only${reset}
      npx @buckits/claude-statusline --local
 
-     ${dim}# Replace existing statusline${reset}
-     npx @buckits/claude-statusline --global --force
+     ${dim}# Uninstall${reset}
+     npx @buckits/claude-statusline --global --uninstall
 `);
   process.exit(0);
 }

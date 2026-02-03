@@ -84,11 +84,11 @@ npx @buckits/claude-statusline --global
 # Install for current project only
 npx @buckits/claude-statusline --local
 
-# Replace existing statusline
-npx @buckits/claude-statusline --global --force
-
-# Uninstall
+# Uninstall (global)
 npx @buckits/claude-statusline --global --uninstall
+
+# Uninstall (local)
+npx @buckits/claude-statusline --local --uninstall
 ```
 
 ## What It Looks Like
@@ -128,8 +128,7 @@ npx get-shit-done-cc
 If you prefer to install manually:
 
 1. Copy `statusline.cjs` to `~/.claude/statusline.cjs`
-2. Make it executable: `chmod +x ~/.claude/statusline.cjs`
-3. Add to `~/.claude/settings.json`:
+2. Add to `~/.claude/settings.json`:
 
 ```json
 {
@@ -145,7 +144,7 @@ If you prefer to install manually:
 ### Statusline not showing?
 
 1. Make sure you restarted Claude Code after installation
-2. Verify the script is executable: `ls -la ~/.claude/statusline.cjs`
+2. Verify the script exists: `ls -la ~/.claude/statusline.cjs`
 
 ### Wrong colors?
 
