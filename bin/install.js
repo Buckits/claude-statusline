@@ -154,12 +154,6 @@ function uninstall(isGlobal) {
       removed = true;
     }
 
-    // Also clean up old format
-    if (settings.status_line) {
-      delete settings.status_line;
-      writeSettings(settingsPath, settings);
-      removed = true;
-    }
   }
 
   if (!removed) {
@@ -201,33 +195,14 @@ function install(isGlobal, barWidth) {
   const settingsPath = path.join(targetDir, 'settings.json');
   const settings = readSettings(settingsPath);
 
-  // Check for existing statusline
-  const hasExisting = settings.statusLine != null || settings.status_line != null;
+  // Set statusline config (always overwrite)
+  settings.statusLine = {
+    type: 'command',
+    command: statuslineDest + ' --width ' + barWidth
+  };
 
-  if (hasExisting && !hasForce) {
-    const existingCmd = settings.statusLine?.command || settings.status_line?.script || '(custom)';
-    console.log(`
-   ${yellow}⚠${reset} Existing statusline detected
-   ${dim}Current: ${existingCmd}${reset}
-
-   Use ${cyan}--force${reset} to replace it, or keep your current config.
-   ${dim}The statusline.sh file has been installed - you can switch anytime.${reset}
-`);
-  } else {
-    // Remove old format if present
-    if (settings.status_line) {
-      delete settings.status_line;
-    }
-
-    // Set new format
-    settings.statusLine = {
-      type: 'command',
-      command: statuslineDest + ' --width ' + barWidth
-    };
-
-    writeSettings(settingsPath, settings);
-    console.log(`   ${green}✓${reset} Configured settings.json`);
-  }
+  writeSettings(settingsPath, settings);
+  console.log(`   ${green}✓${reset} Configured settings.json`);
 
   // Success message
   console.log(`
