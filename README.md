@@ -9,7 +9,7 @@
 
 <br>
 
-![Statusline Preview](assets/statusline-preview.svg)
+![Statusline Preview](assets/50-bars.png)
 
 <br>
 
@@ -34,7 +34,7 @@ Claude Code's default statusline is... minimal. You deserve better.
 
 ### 🎨 Gradient Progress Bar
 
-50 segments that smoothly transition through colors as your context fills up. The gradient is calculated relative to the auto-compact threshold, not total capacity—so you always know how close you are to summarization.
+Smoothly transitions through colors as your context fills up. Choose your width during install—Compact (25), Medium (38), Full (50), or Custom (any number 10-100). The gradient is calculated relative to the auto-compact threshold, not total capacity—so you always know how close you are to summarization.
 
 ### ⚡ Auto-Compact Threshold
 
@@ -68,8 +68,9 @@ npx @buckits/claude-statusline
 
 That's it. The installer will:
 1. Ask where to install (global or local)
-2. Copy the statusline script
-3. Configure your settings
+2. Let you choose your progress bar width
+3. Copy the statusline script
+4. Configure your settings
 
 ### Options
 
@@ -92,23 +93,17 @@ npx @buckits/claude-statusline --global --uninstall
 
 ## What It Looks Like
 
-### 🟢 Normal Usage (Green Zone)
+### Compact (25 bars)
 
-![Green Zone](assets/statusline-green.svg)
+![Compact](assets/25-bars.png)
 
-Safe and sound. Plenty of context remaining.
+### Medium (38 bars)
 
-### 🟡 Getting Busy (Yellow Zone)
+![Medium](assets/38-bars.png)
 
-![Yellow Zone](assets/statusline-yellow.svg)
+### Full (50 bars)
 
-Making progress. Keep an eye on that threshold.
-
-### 🔴 Approaching Limit (Red Zone)
-
-![Red Zone](assets/statusline-red.svg)
-
-Getting close to auto-compact. Consider wrapping up or starting fresh.
+![Full](assets/50-bars.png)
 
 ## 🤝 GSD Compatible
 
@@ -125,36 +120,22 @@ npx get-shit-done-cc
 ## Requirements
 
 - **Claude Code CLI** (obviously)
-- **jq** - for JSON parsing ([install guide](https://stedolan.github.io/jq/download/))
-- **Bash** - ships with macOS/Linux
+- **Node.js** >= 14
 - **Git** - for git status features (optional)
-
-### Installing jq
-
-```bash
-# macOS
-brew install jq
-
-# Ubuntu/Debian
-sudo apt install jq
-
-# Windows (via chocolatey)
-choco install jq
-```
 
 ## Manual Installation
 
 If you prefer to install manually:
 
-1. Copy `statusline.sh` to `~/.claude/statusline.sh`
-2. Make it executable: `chmod +x ~/.claude/statusline.sh`
+1. Copy `statusline.js` to `~/.claude/statusline.js`
+2. Make it executable: `chmod +x ~/.claude/statusline.js`
 3. Add to `~/.claude/settings.json`:
 
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "/Users/YOUR_USERNAME/.claude/statusline.sh"
+    "command": "/Users/YOUR_USERNAME/.claude/statusline.js --width 50"
   }
 }
 ```
@@ -164,12 +145,11 @@ If you prefer to install manually:
 ### Statusline not showing?
 
 1. Make sure you restarted Claude Code after installation
-2. Check that `jq` is installed: `which jq`
-3. Verify the script is executable: `ls -la ~/.claude/statusline.sh`
+2. Verify the script is executable: `ls -la ~/.claude/statusline.js`
 
 ### Wrong colors?
 
-Your terminal needs to support 256 colors. Most modern terminals do.
+Your terminal needs to support true color (24-bit). Most modern terminals do.
 
 ### Git status not showing?
 

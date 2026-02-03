@@ -134,10 +134,10 @@ function uninstall(isGlobal) {
   let removed = false;
 
   // Remove statusline.sh
-  const statuslinePath = path.join(targetDir, 'statusline.sh');
+  const statuslinePath = path.join(targetDir, 'statusline.js');
   if (fs.existsSync(statuslinePath)) {
     fs.unlinkSync(statuslinePath);
-    console.log(`   ${green}✓${reset} Removed statusline.sh`);
+    console.log(`   ${green}✓${reset} Removed statusline.js`);
     removed = true;
   }
 
@@ -147,7 +147,7 @@ function uninstall(isGlobal) {
     const settings = readSettings(settingsPath);
 
     if (settings.statusLine && settings.statusLine.command &&
-        settings.statusLine.command.includes('statusline.sh')) {
+        settings.statusLine.command.includes('statusline.js')) {
       delete settings.statusLine;
       writeSettings(settingsPath, settings);
       console.log(`   ${green}✓${reset} Removed statusline from settings.json`);
@@ -175,7 +175,8 @@ function uninstall(isGlobal) {
 /**
  * Install statusline
  */
-function install(isGlobal) {
+function install(isGlobal, barWidth) {
+  barWidth = barWidth || 50;
   const targetDir = isGlobal ? getGlobalDir() : getLocalDir();
   const locationLabel = isGlobal
     ? targetDir.replace(os.homedir(), '~')
@@ -190,11 +191,11 @@ function install(isGlobal) {
   }
 
   // Copy statusline.sh
-  const statuslineSrc = path.join(__dirname, '..', 'statusline.sh');
-  const statuslineDest = path.join(targetDir, 'statusline.sh');
+  const statuslineSrc = path.join(__dirname, '..', 'statusline.js');
+  const statuslineDest = path.join(targetDir, 'statusline.js');
   fs.copyFileSync(statuslineSrc, statuslineDest);
   fs.chmodSync(statuslineDest, '755');
-  console.log(`   ${green}✓${reset} Installed statusline.sh`);
+  console.log(`   ${green}✓${reset} Installed statusline.js`);
 
   // Update settings.json
   const settingsPath = path.join(targetDir, 'settings.json');
@@ -221,7 +222,7 @@ function install(isGlobal) {
     // Set new format
     settings.statusLine = {
       type: 'command',
-      command: statuslineDest
+      command: statuslineDest + ' --width ' + barWidth
     };
 
     writeSettings(settingsPath, settings);
@@ -249,7 +250,7 @@ function install(isGlobal) {
 function promptLocation() {
   if (!process.stdin.isTTY) {
     console.log(`   ${dim}Non-interactive mode, defaulting to global install${reset}\n`);
-    install(true);
+    install(true, 50);
     return;
   }
 
@@ -279,12 +280,47 @@ function promptLocation() {
       This project only
 `);
 
-  rl.question(`   Choice ${dim}[1]${reset}: `, (answer) => {
-    answered = true;
-    rl.close();
+  rl.question(`   Choice ${dim}[1]${reset}: `, (locAnswer) => {
+    const isGlobal = (locAnswer.trim() || '1') !== '2';
     console.log('');
-    const choice = answer.trim() || '1';
-    install(choice !== '2');
+    promptWidth(rl, (barWidth) => {
+      answered = true;
+      rl.close();
+      console.log('');
+      install(isGlobal, barWidth);
+    });
+  });
+}
+
+/**
+ * Interactive prompt for bar width
+ */
+function promptWidth(rl, callback) {
+  console.log(`   ${yellow}Progress bar width?${reset}
+
+   ${cyan}1${reset}) ${bold}Compact${reset}  ${dim}[${green}${'██'.repeat(3)}${reset}${dim}${'░'.repeat(19)}${red}ϟ${reset}${dim}${'░'.repeat(3)}]${reset}  ${dim}25 bars${reset}
+   ${cyan}2${reset}) ${bold}Medium${reset}   ${dim}[${green}${'██'.repeat(5)}${reset}${dim}${'░'.repeat(24)}${red}ϟ${reset}${dim}${'░'.repeat(5)}]${reset}  ${dim}38 bars${reset}
+   ${cyan}3${reset}) ${bold}Full${reset}     ${dim}[${green}${'██'.repeat(7)}${reset}${dim}${'░'.repeat(28)}${red}ϟ${reset}${dim}${'░'.repeat(8)}]${reset}  ${dim}50 bars${reset}
+   ${cyan}4${reset}) ${bold}Custom${reset}   ${dim}Enter your own number${reset}
+`);
+
+  rl.question(`   Choice ${dim}[3]${reset}: `, (answer) => {
+    const choice = answer.trim() || '3';
+    const widths = { '1': 25, '2': 38, '3': 50 };
+
+    if (choice === '4') {
+      rl.question(`   Number of bars ${dim}(10-100)${reset}: `, (numAnswer) => {
+        const num = parseInt(numAnswer.trim(), 10);
+        if (num >= 10 && num <= 100) {
+          callback(num);
+        } else {
+          console.log(`   ${yellow}⚠${reset} Invalid number, using default (50)\n`);
+          callback(50);
+        }
+      });
+    } else {
+      callback(widths[choice] || 50);
+    }
   });
 }
 

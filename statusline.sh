@@ -361,7 +361,7 @@ unified_bar+="]"
 line1+=$(printf " %s \033[${unified_rightmost_color}m%s\033[0m\033[1;36m/%s\033[0m" "$unified_bar" "$used_fmt_int" "$max_fmt_int")
 
 # LINE 2: Project/Git Info
-# Format: 📁 trellis POC → origin/POC ↑11
+# Format: 📁 myproject main ✓ → origin/main ↑11
 line2=""
 
 # Folder icon and project name in cyan

@@ -1,13 +1,13 @@
 {
   "name": "@buckits/claude-statusline",
-  "version": "2.3.3",
+  "version": "3.0.0",
   "description": "The statusline Claude Code deserves - gradient progress bar, auto-compact threshold marker, git status, cost tracking, 2-line dashboard",
   "bin": {
     "claude-statusline": "bin/install.js"
   },
   "files": [
     "bin/",
-    "statusline.sh"
+    "statusline.js"
   ],
   "keywords": [
     "claude",
